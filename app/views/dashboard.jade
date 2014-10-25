@@ -6,7 +6,7 @@ block content
       hr
       h3= post.title
       h5.text-muted= moment(post.date).fromNow()
-      p!= marked(post.body)
+      div!= marked(post.body)
       hr
   else
     h1 You have no posts or entries.

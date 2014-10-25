@@ -6,4 +6,4 @@ block content
       - console.log(post);
       h1= post.title
       h4.text-muted by <a href="/#{post.author}">#{post.author}</a> on #{moment(post.date).format('MMMM Do YYYY')}
-      p!= marked(post.body)
+      div!= marked(post.body)
