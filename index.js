@@ -9,6 +9,8 @@ var csrf = require('lusca').csrf();
 var methodOverride = require('method-override');
 
 var _ = require('lodash');
+var moment = require('moment');
+var marked = require('marked');
 var MongoStore = require('connect-mongo')({ session: session });
 var flash = require('express-flash');
 var path = require('path');
@@ -76,6 +78,12 @@ app.use(function(req, res, next) {
 app.use(function(req, res, next) {
   // Make user object available in templates.
   res.locals.user = req.user;
+
+  // Make moment object available in templates.
+  res.locals.moment = moment;
+
+  // Make marked object available in templates.
+  res.locals.marked = marked;
   next();
 });
 

@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  for post in posts
+    hr
+    h3= post.title
+    h5.text-muted= moment(post.date).fromNow()
+    p!= marked(post.body)
+    hr

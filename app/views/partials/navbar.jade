@@ -13,8 +13,6 @@
           a(href="/") Home
         li(class=title==='About'?'active':undefined)
           a(href="/about") About
-        li(class=title==='Contact'?'active':undefined)
-          a(href="/contact") Contact
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=title==='Sign Up'?'active':undefined)
@@ -22,6 +20,14 @@
           li(class=title==='Login'?'active':undefined)
             a(href="/login") Login
         else
+          li(class=title==='New Post'?'active':undefined)
+            a(href="/post")
+              span.fa.fa-plus
+              | &nbsp;New Post
+          li(class=title==='New Entry'?'active':undefined)
+            a(href="/entry")
+              span.fa.fa-chevron-right
+              | &nbsp;New Entry
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
               img(src='#{user.profile.avatar || user.gravatar(60)}' alt="Profile Pic")

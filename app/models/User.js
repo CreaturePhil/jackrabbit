@@ -8,6 +8,9 @@ var userSchema = new mongoose.Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String,
 
+  publicPosts: [],
+  privatePosts: [],
+
   profile: {
     bio: { type: String, default: '' },
     location: { type: String, default: '' },

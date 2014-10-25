@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  form(role="form" method="post")
+    input(type="hidden" name="_csrf" value=_csrf)
+    .form-group
+      input.form-control(type="text" name="title" autofocus=true placeholder="Put title here" required)
+    .form-group
+      textarea.form-control(type="password" name="content" rows="30" placeholder="Put some good stuff here" required)
+    .form-group
+      button.btn.btn-primary.center-block(type="submit") Post

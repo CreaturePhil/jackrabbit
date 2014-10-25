@@ -3,11 +3,15 @@ var passportConf = require('./passport');
 var homeController = require('../app/controllers/home_controller');
 var authController = require('../app/controllers/authentication_controller');
 var userController = require('../app/controllers/user_controller');
+var postController = require('../app/controllers/post_controller');
 
 var router = express.Router();
 
 router.route('/')
   .get(homeController.index.get);
+
+router.route('/about')
+  .get(homeController.about.get);
 
 router.route('/signup')
   .get(authController.getSignup)
@@ -39,6 +43,14 @@ router.route('/settings/password')
 router.route('/settings/delete')
   .get(passportConf.isAuthenticated, userController.getDelete)
   .post(passportConf.isAuthenticated, userController.postDeleteAccount);
+
+router.route('/post')
+  .get(passportConf.isAuthenticated, postController.public.get)
+  .post(passportConf.isAuthenticated, postController.public.post);
+
+router.route('/entry')
+  .get(passportConf.isAuthenticated, postController.private.get)
+  .post(passportConf.isAuthenticated, postController.private.post);
 
 router.route('/:user')
   .get(userController.getUserProfile);
