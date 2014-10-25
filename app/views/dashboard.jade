@@ -1,9 +1,12 @@
 extends layout
 
 block content
-  for post in posts
-    hr
-    h3= post.title
-    h5.text-muted= moment(post.date).fromNow()
-    p!= marked(post.body)
-    hr
+  if posts.length > 0
+    for post in posts
+      hr
+      h3= post.title
+      h5.text-muted= moment(post.date).fromNow()
+      p!= marked(post.body)
+      hr
+  else
+    h1 You have no posts or entries.

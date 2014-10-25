@@ -23,6 +23,10 @@ var secrets = require('./config/secrets');
 
 var app = express();
 
+marked.setOptions({
+  sanitize: true 
+});
+
 /**
  * Connect to MongoDB.
  */

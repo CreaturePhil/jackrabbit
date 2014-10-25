@@ -1,4 +1,5 @@
 var User = require('../models/User');
+var PublicPost = require('../models/Post').publicPost;
 
 /**
  * Route /settings/account
@@ -119,6 +120,16 @@ exports.getUserProfile = function(req, res, next) {
     res.render('user/profile', {
       title: user.username,
       User: user
+    });
+  }); 
+};
+
+exports.getPost = function(req, res) {
+  PublicPost.findById(req.params.hash, function(err, post) {
+    if (err) return next(err);
+    res.render('user/post', {
+      title: post.title,
+      post: post,
     });
   }); 
 };

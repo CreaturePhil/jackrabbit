@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-6.col-md-offset-3
+      - console.log(post);
+      h1= post.title
+      h4.text-muted by <a href="/#{post.author}">#{post.author}</a> on #{moment(post.date).format('MMMM Do YYYY')}
+      p!= marked(post.body)

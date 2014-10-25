@@ -13,6 +13,9 @@ router.route('/')
 router.route('/about')
   .get(homeController.about.get);
 
+router.route('/explore')
+  .get(homeController.explore.get);
+
 router.route('/signup')
   .get(authController.getSignup)
   .post(authController.postSignup);
@@ -54,5 +57,8 @@ router.route('/entry')
 
 router.route('/:user')
   .get(userController.getUserProfile);
+
+router.route('/:user/:hash/:title')
+  .get(userController.getPost);
 
 module.exports = router;

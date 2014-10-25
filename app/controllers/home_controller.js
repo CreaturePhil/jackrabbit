@@ -46,6 +46,18 @@ var homeController = (function() {
     } 
   };
 
+  controller.explore = {
+    get: function(req, res) {
+      PublicPost.find({}, function(err, posts) {
+        if (err) throw err;
+        res.render('explore', {
+          title: 'Explore',
+          posts: posts
+        })
+      });
+    } 
+  };
+
   return controller;
 })();
 
