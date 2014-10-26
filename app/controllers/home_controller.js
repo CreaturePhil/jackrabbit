@@ -49,6 +49,9 @@ var homeController = (function() {
   controller.explore = {
     get: function(req, res) {
       PublicPost.find({}, function(err, posts) {
+        posts.sort(function(a, b) {
+          return b.date - a.date;
+        });
         if (err) throw err;
         res.render('explore', {
           title: 'Explore',
