@@ -58,11 +58,18 @@ router.route('/entry')
 router.route('/entry/:hash/:title')
   .get(passportConf.isAuthenticated, userController.getEntry);
 
+router.route('/entry/:hash/:title/edit')
+  .get(passportConf.isAuthenticated, postController.edit.private.get)
+  .post(passportConf.isAuthenticated, postController.edit.private.post);
+
 router.route('/:user')
   .get(userController.getUserProfile);
 
 router.route('/:user/:hash/:title')
   .get(userController.getPost);
 
+router.route('/:user/:hash/:title/edit')
+  .get(passportConf.isAuthenticated, postController.edit.public.get)
+  .post(passportConf.isAuthenticated, postController.edit.public.post);
 
 module.exports = router;

@@ -138,7 +138,7 @@ exports.getPost = function(req, res) {
 exports.getEntry = function(req, res) {
   PrivatePost.findById(req.params.hash, function(err, post) {
     if (err) return next(err);
-    if (req.user.username !== post.author) return res.redirect('/');
+    if (req.user.uid !== post.author.toLowerCase()) return res.redirect('/');
     res.render('user/post', {
       title: post.title,
       post: post,

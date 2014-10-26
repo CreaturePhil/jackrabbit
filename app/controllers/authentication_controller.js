@@ -60,6 +60,7 @@ exports.postSignup = function(req, res, next) {
         if (err) return next(err);
         req.logIn(user, function(err) {
           if (err) return next(err);
+          req.flash('success', { msg: 'You have succesfully sign up.' });
           res.redirect('/');
         });
       });

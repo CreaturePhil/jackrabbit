@@ -70,6 +70,68 @@ var postController = (function() {
     }
   };
 
+  controller.edit = {
+    public: {
+      get: function(req, res) {
+        PublicPost.findById(req.params.hash, function(err, post) {
+          if (err) return next(err); 
+          if (req.user.uid !== post.author.toLowerCase()) return res.redirect('/');
+          res.render('post/edit', {
+            title: 'Edit',
+            post: post
+          });
+        }); 
+      },
+
+      post: function(req, res) {
+        PublicPost.findById(req.params.hash, function(err, post) {
+          if (err) return next(err); 
+          if (req.user.uid !== post.author.toLowerCase()) return res.redirect('/');
+
+          post.turl = req.body.title.replace(/[^a-z0-9 ]/gi, '').replace(/ /gi, '-');
+          post.title = req.body.title;
+          post.body = req.body.content;
+
+          post.save(function(err) {
+            if (err) return next(err);
+            req.flash('success', { msg: 'Post successfully editted.' });
+            res.redirect('/');
+          });
+        }); 
+      }
+    },
+
+    private: {
+      get: function(req, res) {
+        PrivatePost.findById(req.params.hash, function(err, post) {
+          if (err) return next(err); 
+          if (req.user.uid !== post.author.toLowerCase()) return res.redirect('/');
+          res.render('post/edit', {
+            title: 'Edit',
+            post: post
+          });
+        }); 
+      },
+
+      post: function(req, res) {
+        PrivatePost.findById(req.params.hash, function(err, post) {
+          if (err) return next(err); 
+          if (req.user.uid !== post.author.toLowerCase()) return res.redirect('/');
+
+          post.turl = req.body.title.replace(/[^a-z0-9 ]/gi, '').replace(/ /gi, '-');
+          post.title = req.body.title;
+          post.body = req.body.content;
+
+          post.save(function(err) {
+            if (err) return next(err);
+            req.flash('success', { msg: 'Entry successfully editted.' });
+            res.redirect('/');
+          });
+        }); 
+      }
+    }
+  };
+
   return controller;
 })();
 

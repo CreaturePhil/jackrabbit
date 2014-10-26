@@ -8,5 +8,7 @@ block content
         h4.text-muted by <a href="/#{post.author}">#{post.author}</a> on #{moment(post.date).format('MMMM Do YYYY')}
       else
         h4.text-muted Created on #{moment(post.date).format('MMMM Do YYYY')}
+    .text-right
+      a(href="/#{post.author}/#{post.id}/#{post.turl}/edit") Edit
     .col-md-6.col-md-offset-2
       div!= marked(post.body)

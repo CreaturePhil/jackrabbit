@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+  ul.nav.nav-pills.nav-justified
+    li.active
+      a(href='#markdown', role='tab', data-toggle='tab') Markdown
+    li
+      a(href='#preview', role='tab', data-toggle='tab') Preview
+
+  .tab-content
+    #markdown.tab-pane.active
+      br
+      form(role="form" method="post")
+        input(type="hidden" name="_csrf" value=_csrf)
+        .form-group
+          input.form-control.title(type="text" name="title" autofocus=true value="#{post.title}" required)
+        .form-group
+          textarea.form-control.content(type="password" name="content" rows="10" required)= post.body
+        .form-group
+          button.btn.btn-primary.center-block(type="submit") Post
+    #preview.tab-pane
+      h1.text-center
+      div
+  
+block bottom
+  script.
+    (function() {
+      var $markdownTitle = $('.title');
+      var $markdownContent = $('.content');
+      var $previewTitle = $('#preview h1');
+      var $previewContent = $('#preview div');
+
+      $markdownTitle.keyup(function(){
+        $previewTitle.text($markdownTitle.val()); 
+      });
+
+      $markdownContent.keyup(function(){
+        $previewContent.html(marked($markdownContent.val())); 
+        $(this).height(0);
+        $(this).height(this.scrollHeight);
+      });
+    })();

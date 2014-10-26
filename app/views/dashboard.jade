@@ -28,6 +28,8 @@ block content
                   h6.text-info= post.type
               h5.text-muted= moment(post.date).fromNow()
               div!= marked(post.body.substr(0, 100))
+              .text-right
+                a(href="/#{post.author}/#{post.id}/#{post.turl}/edit") Edit
           else
             div.list-group-item.block-link(onclick="window.location='/entry/#{post.id}/#{post.turl}'")
                 .clearfix
@@ -37,6 +39,8 @@ block content
                     h6.text-warning= post.type
                 h5.text-muted= moment(post.date).fromNow()
                 div!= marked(post.body.substr(0, 100))
+                .text-right
+                  a(href="/#{post.author}/#{post.id}/#{post.turl}/edit") Edit
         br
       #posts.tab-pane
         for post in publicPosts
@@ -45,6 +49,8 @@ block content
             h3= post.title
             h5.text-muted= moment(post.date).fromNow()
             div!= marked(post.body.substr(0, 100))
+            .text-right
+              a(href="/#{post.author}/#{post.id}/#{post.turl}/edit") Edit
         br
       #entries.tab-pane
         for post in privatePosts
@@ -53,6 +59,8 @@ block content
             h3= post.title
             h5.text-muted= moment(post.date).fromNow()
             div!= marked(post.body.substr(0, 100))
+            .text-right
+              a(href="/#{post.author}/#{post.id}/#{post.turl}/edit") Edit
         br
   else
     h1 You have no posts or entries.

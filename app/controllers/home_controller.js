@@ -12,7 +12,7 @@ var homeController = (function() {
           title: 'Home'
         });
       } else {
-        User.findOne(req.user.id, function(req, user) {
+        User.findOne({ uid: req.user.uid }, function(req, user) {
           PublicPost.find({
             '_id': {
               $in: user.publicPosts
