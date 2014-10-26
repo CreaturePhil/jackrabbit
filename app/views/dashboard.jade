@@ -6,15 +6,15 @@ block content
       li.active
         a(href='#all', role='tab', data-toggle='tab')
           | All
-          span.badge=posts.length
+          span.badge= posts.length
       li
         a(href='#posts', role='tab', data-toggle='tab') 
           | Public Posts
-          span.badge=publicPosts.length
+          span.badge= publicPosts.length
       li
         a(href='#entries', role='tab', data-toggle='tab') 
           | Journal Entries
-          span.badge=privatePosts.length
+          span.badge= privatePosts.length
     .tab-content
       #all.tab-pane.active
         for post in posts
@@ -38,6 +38,21 @@ block content
                 h5.text-muted= moment(post.date).fromNow()
                 div!= marked(post.body.substr(0, 100))
         br
-      #preview.tab-pane
+      #posts.tab-pane
+        for post in publicPosts
+          br
+          div.list-group-item.block-link(onclick="window.location='/#{post.author}/#{post.id}/#{post.turl}'")
+            h3= post.title
+            h5.text-muted= moment(post.date).fromNow()
+            div!= marked(post.body.substr(0, 100))
+        br
+      #entries.tab-pane
+        for post in privatePosts
+          br
+          div.list-group-item.block-link(onclick="window.location='/entry/#{post.id}/#{post.turl}'")
+            h3= post.title
+            h5.text-muted= moment(post.date).fromNow()
+            div!= marked(post.body.substr(0, 100))
+        br
   else
     h1 You have no posts or entries.

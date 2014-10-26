@@ -55,13 +55,14 @@ router.route('/entry')
   .get(passportConf.isAuthenticated, postController.private.get)
   .post(passportConf.isAuthenticated, postController.private.post);
 
+router.route('/entry/:hash/:title')
+  .get(passportConf.isAuthenticated, userController.getEntry);
+
 router.route('/:user')
   .get(userController.getUserProfile);
 
 router.route('/:user/:hash/:title')
   .get(userController.getPost);
 
-router.route('/entry/:hash/:title')
-  .get(passportConf.isAuthenticated, userController.getEntry);
 
 module.exports = router;

@@ -29,6 +29,12 @@ var homeController = (function() {
               posts.sort(function(a, b) {
                 return b.date - a.date;
               });
+              publicPosts.sort(function(a, b) {
+                return b.date - a.date;
+              });
+              privatePosts.sort(function(a, b) {
+                return b.date - a.date;
+              });
               res.render('dashboard', {
                 title: 'Home',
                 posts: posts,
