@@ -61,4 +61,7 @@ router.route('/:user')
 router.route('/:user/:hash/:title')
   .get(userController.getPost);
 
+router.route('/entry/:hash/:title')
+  .get(passportConf.isAuthenticated, userController.getEntry);
+
 module.exports = router;

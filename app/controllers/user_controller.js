@@ -1,5 +1,6 @@
 var User = require('../models/User');
 var PublicPost = require('../models/Post').publicPost;
+var PrivatePost = require('../models/Post').privatePost;
 
 /**
  * Route /settings/account
@@ -127,6 +128,17 @@ exports.getUserProfile = function(req, res, next) {
 exports.getPost = function(req, res) {
   PublicPost.findById(req.params.hash, function(err, post) {
     if (err) return next(err);
+    res.render('user/post', {
+      title: post.title,
+      post: post,
+    });
+  }); 
+};
+
+exports.getEntry = function(req, res) {
+  PrivatePost.findById(req.params.hash, function(err, post) {
+    if (err) return next(err);
+    if (req.user.username !== post.author) return res.redirect('/');
     res.render('user/post', {
       title: post.title,
       post: post,

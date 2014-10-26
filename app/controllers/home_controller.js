@@ -32,6 +32,8 @@ var homeController = (function() {
               res.render('dashboard', {
                 title: 'Home',
                 posts: posts,
+                publicPosts: publicPosts,
+                privatePosts: privatePosts
               });
             });
           });         
