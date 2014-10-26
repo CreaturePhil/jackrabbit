@@ -1,5 +1,66 @@
 extends layout
 
 block content
-  h1 Welcome to Jackrabbit
-  p Jackrabbit is a posting platform for public blogging and private journals.
+  .bg
+  .jumbotron.welcome.text-center
+    h1
+      strong Jackrabbit
+    br
+    h2 Jackrabbit is a posting platform for public blogging and private journals.
+    br
+    a.btn.btn-lg.btn-success(href="/signup") Join Now
+
+  hr.featurette-divider
+
+  .row.featurette
+    .col-md-7
+      h2.featurette-heading
+        | First featurette heading.
+        span.text-muted It'll blow your mind.
+      p.lead
+        | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+    .col-md-5
+      img.img-responsive(src='post.jpg', alt='Generic placeholder image')
+  hr.featurette-divider
+  .row.featurette
+    .col-md-5
+      img.img-responsive(src='viewpost.jpg', alt='Generic placeholder image')
+    .col-md-7
+      h2.featurette-heading
+        | Oh yeah, it's that good.
+        span.text-muted See for yourself.
+      p.lead
+        | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+  hr.featurette-divider
+  .row.featurette
+    .col-md-7
+      h2.featurette-heading
+        | And lastly, this one.
+        span.text-muted Checkmate.
+      p.lead
+        | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+    .col-md-5
+      img.img-responsive(src='explore.jpg', alt='Generic placeholder image')
+
+
+block bottom
+  script.
+    (function() {
+      var $jumbotron = $('.jumbotron');
+      var $window = $(window);
+      var $bg = $('.bg');
+
+      new WOW().init();
+
+      $jumbotron.css('height', window.outerHeight - 60);
+
+      var jumboHeight = $jumbotron.outerHeight();
+      function parallax() {
+        var scrolled = $window.scrollTop();
+        $bg.css('height', (jumboHeight-scrolled) + 'px');
+      }
+
+      $window.scroll(function(e){
+        parallax();
+      });
+    })();

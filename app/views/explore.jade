@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  .jumbotron
-    h1 Explore
+  h1 Explore
+  hr
   if posts.length > 0
     for post in posts
       .list-group-item.block-link(onclick="window.location='/#{post.author}/#{post.id}/#{post.turl}'")
