@@ -4,12 +4,11 @@ block content
   .jumbotron
     h1 Explore
   if posts.length > 0
-    .list-group
-      for post in posts
-        br
-        a.list-group-item(href="/#{post.author}/#{post.id}/#{post.turl}")
-          h4.text-primary= post.title
-          h6.text-muted 
-            | Posted #{moment(post.date).fromNow()}
-            | by #{post.author}
-            | on #{moment(post.date).format('MMMM Do YYYY')}
+    for post in posts
+      .list-group-item.block-link(onclick="window.location='/#{post.author}/#{post.id}/#{post.turl}'")
+        h4.text-primary= post.title
+        h6.text-muted 
+          | Posted #{moment(post.date).fromNow()}
+          | by <a href="/#{post.author}">#{post.author}</a>
+          | on #{moment(post.date).format('MMMM Do YYYY')}
+      br

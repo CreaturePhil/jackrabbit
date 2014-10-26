@@ -4,6 +4,9 @@ block content
   .row
     .text-center
       h1= post.title
-      h4.text-muted by <a href="/#{post.author}">#{post.author}</a> on #{moment(post.date).format('MMMM Do YYYY')}
+      if post.type === 'Public'
+        h4.text-muted by <a href="/#{post.author}">#{post.author}</a> on #{moment(post.date).format('MMMM Do YYYY')}
+      else
+        h4.text-muted Created on #{moment(post.date).format('MMMM Do YYYY')}
     .col-md-6.col-md-offset-2
       div!= marked(post.body)
