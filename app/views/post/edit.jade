@@ -15,7 +15,7 @@ block content
         .form-group
           input.form-control.title(type="text" name="title" autofocus=true value="#{post.title}" required)
         .form-group
-          textarea.form-control.content(type="password" name="content" rows="10" required)= post.body
+          textarea.form-control.content(type="password" name="content" required)= post.body
         .form-group
           button.btn.btn-primary.center-block(type="submit") Post
     #preview.tab-pane
@@ -30,6 +30,8 @@ block bottom
       var $previewTitle = $('#preview h1');
       var $previewContent = $('#preview div');
 
+      $previewTitle.text($markdownTitle.val()); 
+      $previewContent.html(marked($markdownContent.val())); 
       $markdownTitle.keyup(function(){
         $previewTitle.text($markdownTitle.val()); 
       });
