@@ -11,4 +11,5 @@ block content
           h4.text-primary= post.title
           h6.text-muted 
             | Posted #{moment(post.date).fromNow()}
+            | by #{post.author}
             | on #{moment(post.date).format('MMMM Do YYYY')}
